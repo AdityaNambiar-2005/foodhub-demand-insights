@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="mb-4">Demand Prediction</h2>
+
+<div class="card shadow p-4">
+
+<form method="POST">
+
+    <div class="mb-3">
+        <label class="form-label">Restaurant</label>
+        <select name="restaurant" class="form-select">
+            {% for r in restaurants %}
+            <option value="{{ r }}"
+                {% if r == selected_restaurant %}selected{% endif %}>
+                {{ r }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Cuisine Type</label>
+        <select name="cuisine" class="form-select">
+            {% for c in cuisines %}
+            <option value="{{ c }}"
+                {% if c == selected_cuisine %}selected{% endif %}>
+                {{ c }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">City</label>
+        <select name="city" class="form-select">
+            {% for city in cities %}
+            <option value="{{ city }}"
+                {% if city == selected_city %}selected{% endif %}>
+                {{ city }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Customer Rating</label>
+        <select name="rating" class="form-select" required>
+            <option value="">Select Rating</option>
+            {% for i, label in [(5,'Excellent'),(4,'Very Good'),(3,'Good'),(2,'Average'),(1,'Poor')] %}
+            <option value="{{ i }}"
+                {% if selected_rating == i|string %}selected{% endif %}>
+                {{ label }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Average Meal Price (₹)</label>
+        <input type="number"
+               name="average_meal_price"
+               class="form-control"
+               value="{{ selected_price }}"
+               required>
+    </div>
+
+    <button class="btn btn-primary">Predict Demand</button>
+
+</form>
+
+{% if result %}
+<div class="alert alert-success mt-4">
+    <strong>Prediction Result:</strong> {{ result }}
+</div>
+{% endif %}
+
+</div>
+{% endblock %}

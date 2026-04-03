@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+/* ===== Subtle fade animation ===== */
+.fade {
+    opacity: 0;
+    animation: fadeIn 0.6s ease forwards;
+}
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* ===== Card polish ===== */
+.metric-card {
+    border-radius: 16px;
+    transition: 0.25s ease;
+}
+.metric-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.12);
+}
+
+/* ===== Icon style ===== */
+.metric-icon {
+    font-size: 28px;
+    opacity: 0.85;
+}
+</style>
+
+<h2 class="mb-3 fade">📊 Business Insights Dashboard</h2>
+
+<!-- ===== DATA CONTEXT BAR ===== -->
+<div class="alert alert-light border mb-4 fade">
+    📌 Insights generated from historical FoodHub restaurant data using statistical analysis and machine learning.
+</div>
+
+<!-- ================= KPI SECTION ================= -->
+<div class="row g-4 mb-4">
+
+    <div class="col-md-3 fade">
+        <div class="card p-3 text-center metric-card">
+            <div class="metric-icon">🍽️</div>
+            <h6>Total Restaurants</h6>
+            <h3>{{ total_restaurants }}</h3>
+        </div>
+    </div>
+
+    <div class="col-md-3 fade">
+        <div class="card p-3 text-center metric-card">
+            <div class="metric-icon">🏙️</div>
+            <h6>Total Cities</h6>
+            <h3>{{ total_cities }}</h3>
+        </div>
+    </div>
+
+    <div class="col-md-3 fade">
+        <div class="card p-3 text-center metric-card">
+            <div class="metric-icon">💰</div>
+            <h6>Average Meal Price</h6>
+            <h3>₹{{ avg_price }}</h3>
+        </div>
+    </div>
+
+    <div class="col-md-3 fade">
+        <div class="card p-3 text-center metric-card">
+            <div class="metric-icon">📉</div>
+            <h6>
+                Market Saturation
+                <span
+                    data-bs-toggle="tooltip"
+                    data-bs-placement="top"
+                    title="Market saturation shows how crowded the restaurant market is. High saturation means strong competition, while low saturation indicates better business entry opportunity."
+                    style="cursor:pointer;color:#ff9800;"
+                >
+                    ⓘ
+                </span>
+            </h6>
+            <h5>{{ saturation_level }}</h5>
+        </div>
+    </div>
+
+</div>
+
+<!-- ================= BUSINESS INSIGHT ================= -->
+<div class="row g-4 mb-4">
+
+    <div class="col-md-12 fade">
+        <div class="card p-4 metric-card">
+            <h5>
+                🚀 Best Business Opportunity
+                <span class="badge bg-success ms-2">Data-Backed</span>
+            </h5>
+            <p class="mb-0">{{ best_opportunity }}</p>
+        </div>
+    </div>
+
+</div>
+
+<!-- ================= CHARTS ================= -->
+<h5 class="mt-4 mb-3 fade">📈 Market Analysis</h5>
+
+<div class="row g-4">
+
+    <div class="col-md-6 fade">
+        <div class="card p-3 metric-card">
+            <h6 class="mb-2">Revenue Potential by City</h6>
+            {{ graph_revenue | safe }}
+        </div>
+    </div>
+
+    <div class="col-md-6 fade">
+        <div class="card p-3 metric-card">
+            <h6 class="mb-2">Price Segment Analysis</h6>
+            {{ graph_price | safe }}
+        </div>
+    </div>
+
+</div>
+
+<h5 class="mt-4 mb-3 fade">🌍 Geographic & Cuisine Insights</h5>
+
+<div class="row g-4">
+
+    <div class="col-md-12 fade">
+        <div class="card p-3 metric-card">
+            <h6 class="mb-2">City vs Cuisine Heatmap</h6>
+            {{ graph_heatmap | safe }}
+        </div>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER NOTE ===== -->
+<p class="text-muted text-center mt-4 fade" style="font-size:13px;">
+    Dashboard designed for strategic decision-making, not consumer food ordering.
+</p>
+
+<!-- ===== TOOLTIP INIT ===== -->
+<script>
+document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => {
+    new bootstrap.Tooltip(el);
+});
+</script>
+
+{% endblock %}

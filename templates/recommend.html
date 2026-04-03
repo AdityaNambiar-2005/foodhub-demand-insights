@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% block content %}
+
+<style>
+.reco-card {
+    border-radius: 18px;
+    transition: 0.3s ease;
+}
+.reco-card:hover {
+    transform: translateY(-6px);
+}
+.price-tag {
+    font-weight: 600;
+}
+</style>
+
+<h2 class="mb-4">Restaurant Recommendation</h2>
+
+<!-- FILTER FORM -->
+<form method="POST" class="card p-4 mb-4">
+    <div class="row g-3">
+
+        <div class="col-md-3">
+            <label class="form-label">City</label>
+            <select name="city" class="form-select" required>
+                {% for city in cities %}
+                <option value="{{ city }}"
+                    {% if city == selected_city %}selected{% endif %}>
+                    {{ city }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Cuisine</label>
+            <select name="cuisine" class="form-select" required>
+                {% for cuisine in cuisines %}
+                <option value="{{ cuisine }}"
+                    {% if cuisine == selected_cuisine %}selected{% endif %}>
+                    {{ cuisine }}
+                </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label class="form-label">Price Segment</label>
+            <select name="segment" class="form-select" required>
+                <option value="budget"
+                    {% if selected_segment == "budget" %}selected{% endif %}>
+                    Budget (≤ ₹250)
+                </option>
+                <option value="mid"
+                    {% if selected_segment == "mid" %}selected{% endif %}>
+                    Mid Range (₹251 – ₹500)
+                </option>
+                <option value="premium"
+                    {% if selected_segment == "premium" %}selected{% endif %}>
+                    Premium (> ₹500)
+                </option>
+            </select>
+        </div>
+
+        <div class="col-md-3 d-flex align-items-end">
+            <button class="btn btn-primary w-100">
+                Get Recommendations
+            </button>
+        </div>
+
+    </div>
+</form>
+
+<!-- RESULTS -->
+{% if recommendations and recommendations|length > 0 %}
+
+<h4 class="mb-3">Recommended Restaurants</h4>
+
+{% for r in recommendations %}
+<div class="card p-4 mb-3 reco-card">
+
+    <h5>{{ r["Name of the Restaurant"] }}</h5>
+
+    <p class="mb-1 text-muted">
+        {{ r["Cuisine Category"] }} • {{ r["Name of the city"] }}
+    </p>
+
+    <p class="mb-2 price-tag">
+        Average Meal Price: ₹{{ r["Average meal Price"] }}
+    </p>
+
+    <a href="{{ r["Zomato Restaurant URL"] }}"
+       target="_blank"
+       class="btn btn-danger btn-sm">
+        🍽 View on Zomato
+    </a>
+
+</div>
+{% endfor %}
+
+{% elif selected_city %}
+
+<div class="alert alert-warning mt-4 text-center">
+    😕 <strong>No restaurants found</strong><br>
+    Try changing the city, cuisine, or price segment.
+</div>
+
+{% endif %}
+
+{% endblock %}
