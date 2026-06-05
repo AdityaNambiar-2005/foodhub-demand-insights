@@ -6,6 +6,26 @@ A full-stack restaurant analytics and demand prediction web application built us
 
 https://foodhub-demand-insights.onrender.com
 
+## 📸 Screenshots
+
+## 📸 Screenshots
+
+### 📊 Dashboard Views
+![Dashboard 1](Screenshot 2026-06-05 232941.png)
+![Dashboard 2](Screenshot 2026-06-05 233304.png)
+![Dashboard 3](Screenshot 2026-06-05 233334.png)
+
+---
+
+### 🍽️ Recommendation System
+![Recommendation 1](Screenshot 2026-06-05 233441.png)
+![Recommendation 2](Screenshot 2026-06-05 233400.png)
+
+---
+
+### 🤖 Prediction System
+![Prediction](Screenshot 2026-06-05 233304.png)
+
 ## 📌 Features
 
 * Interactive analytics dashboard
