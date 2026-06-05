@@ -8,24 +8,22 @@ https://foodhub-demand-insights.onrender.com
 
 ## 📸 Screenshots
 
-## 📸 Screenshots
-
 ### 📊 Dashboard Views
-![Dashboard 1](Screenshot 2026-06-05 232941.png)
-![Dashboard 2](Screenshot 2026-06-05 233304.png)
-![Dashboard 3](Screenshot 2026-06-05 233334.png)
+![Dashboard 1](dashboard1.png)
+![Dashboard 2](dashboard2.png)
+![Dashboard 3](dashboard3.png)
 
 ---
 
 ### 🍽️ Recommendation System
-![Recommendation 1](Screenshot 2026-06-05 233441.png)
-![Recommendation 2](Screenshot 2026-06-05 233400.png)
+![Recommendation 1](recommendation1.png)
+![Recommendation 2](recommendation2.png)
 
 ---
 
 ### 🤖 Prediction System
-![Prediction](Screenshot 2026-06-05 233304.png)
-
+![Prediction 1](prediction1.png)
+![Prediction 2](prediction2.png)
 ## 📌 Features
 
 * Interactive analytics dashboard
